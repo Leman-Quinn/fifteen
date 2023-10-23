@@ -144,7 +144,7 @@ def move_right(board, rows, columns):
 
 
 def board_generator(total_pieces, num_rows, num_columns):
-    """Generates the playable board(dynamic) and winner board(fixed)."""
+    """Generates the playable board(dynamic) and winner board(static)."""
     
     current_number = 1 #how the numbers are assigned when generating the board
     board = []
@@ -154,7 +154,7 @@ def board_generator(total_pieces, num_rows, num_columns):
                 rows = []
 
                 for columns in range(int(num_columns)):
-                    if current_number<total_pieces:
+                    if current_number < total_pieces:
                         rows.append(current_number)
                         current_number += 1
                     else:
