@@ -206,7 +206,7 @@ def main():
                     print(f"Congrats! You've won in a total of {moves_counter} moves!")
                     sleep(1)
                     close()
-                elif moves_counter == (Q*5):
+                elif moves_counter == (Q * 5):
                     print(f"You have exceded the maximum number of movements permited for this match.")
                     user_movement = input("\nRestart -> 1\nExit -> 2   ")
 
@@ -217,7 +217,7 @@ def main():
                 else:
                     print(f"Controls: w, a, s, d")
                     print(f"Moves made: {moves_counter}")
-                    print(f"Maximum moves allowed: {Q*5}")
+                    print(f"Maximum moves allowed: {Q * 5}")
                     print(f"Exit -> 2")
                     user_movement = input("\nMake a move:   ")
                     moves = list(user_movement)
