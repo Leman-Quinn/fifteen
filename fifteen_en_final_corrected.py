@@ -45,53 +45,72 @@ def printBoard(board, rows, columns):
         print(" ")
 
 def generateBoards(total_pieces, num_rows, num_columns):
-    #Generates the playable board and winner board
-    current_number = 1 #how the numbers are assigned when generating the board
-    play_board = []
-    win_board = []
+    #Generates playable and winner board
+    numberToAdd = 1
+    playerBoard = []
+    winerBoard = []
 
-    for rows in range(int(num_rows)):
-                rows = []
-                for columns in range(int(num_columns)):
-                    if current_number < total_pieces:
-                        rows.append(current_number)
-                        current_number += 1
+    for row in range(int(num_rows)):
+                
+                row = []
+
+                for column in range(int(num_columns)):
+
+                    if numberToAdd < total_pieces:
+
+                        row.append(numberToAdd)
+
+                        numberToAdd += 1
+
                     else:
-                        rows.append(0)
-                play_board.append(rows)
-                win_board.append(list(rows))
-    return play_board, win_board
+                        row.append(0)
 
-def randomizeBoard(board, num_rows, num_columns):
-    """Randomizes the playable board(dynamic)"""
+                playerBoard.append(row)
+                winerBoard.append(row)
+
+    return playerBoard, winerBoard
+
+def randomizePlayerBoard(board, num_rows, num_columns):
 
     for i in range(Q):
 
-        possible_movements = ("w","a","s","d")
+        possibleMovements = ("w","a","s","d")
 
-        if random.choice(possible_movements)=="w":
+        if random.choice(possibleMovements) == "w":
+
             move_up(board, num_rows, num_columns)
-        elif random.choice(possible_movements)=="s":
+
+        elif random.choice(possibleMovements) == "s":
+
             move_down(board, num_rows, num_columns)
-        elif random.choice(possible_movements)=="d":
+
+        elif random.choice(possibleMovements) == "d":
+             
              move_right(board, num_rows, num_columns)
+
         else:
+
             move_left(board, num_rows, num_columns)    
 
 def move_up(board, rows, columns):
+
     zero_i = None
     zero_j = None
 
-    for i in range(int(rows)): #finds coordinate i and j for the zero
-        for j in range(int(columns)):
-            if board[i][j]==0:
-                zero_i = i
-                zero_j = j
+    for row in range(rows):
+
+        for column in range(columns):
+
+            if board[row][column] == 0:
+                zero_i = row
+                zero_j = column
+
+                break
             else:
                 continue
 
-    if (zero_i-1)>=0: #avoids going out of list range
-        board[zero_i][zero_j], board[zero_i-1][zero_j] = board[zero_i-1][zero_j], board[zero_i][zero_j] #performs the switch
+    if (zero_i - 1) >= 0:
+        board[zero_i][zero_j], board[zero_i-1][zero_j] = board[zero_i-1][zero_j], board[zero_i][zero_j]
 
 def move_down(board, rows, columns):
     zero_i = None
@@ -155,7 +174,7 @@ def main():
                 return main()
             
             flair() #flavor
-            randomizeBoard(board, num_rows, num_columns)
+            randomizePlayerBoard(board, num_rows, num_columns)
             printBoard(board, num_rows, num_columns)
 
             while True:
